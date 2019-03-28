@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <div class="card mb-3 col-lg-8" >
+            <div class="card mb-10 col-lg-6" >
                 <div class="row no-gutters">
                     <div class="col-md-4">
                     <img src="<?= base_url('assets/img/profile/') . $user['image'];?>" class="card-img">
@@ -22,6 +22,15 @@
                             <p class="card-text"><?= $user['email']; ?></p>
                             <p class="card-text"><small class="text-muted">
                                 Member Since <?= date('d F Y', $user['date_created']) ; ?> </small></p>
+                            
+                            <!-- BUTTON EDIT  -->
+                            <div class="form-group row justify-content-end">
+                                <div class="text-center">
+                                     <a class="btn btn-primary" href="<?= base_url('c_user/edit'); ?>" role="button">Edit Profile</a>
+                                </div>
+                            </div>
+                            <!-- CLOSE BUTTON EDIT  -->
+
                         </div>
                     </div>
                 </div>
@@ -32,5 +41,9 @@
 
       </div>
       <!-- End of Main Content -->
+
+      <br>
+
+      <br>
 
      

@@ -54,11 +54,10 @@ class C_user extends CI_Controller {
             # code...
             
             //echo 'Selamat Datang ' . $data['user']['name']
-            $this->load->view('templates/user_header',$data);
-            $this->load->view('templates/user_sidebar',$data);
-            $this->load->view('templates/user_topbar',$data);
+            $this->load->view('templates/home_header',$data);
+            $this->load->view('templates/home_navbar',$data);   
             $this->load->view('user/edit', $data);
-            $this->load->view('templates/user_footer');
+            $this->load->view('templates/home_footer');
         } else {
             # code...
             $name = $this->input->post('name');
