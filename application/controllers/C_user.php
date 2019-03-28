@@ -62,6 +62,7 @@ class C_user extends CI_Controller {
             # code...
             $name = $this->input->post('name');
             $email = $this->input->post('email');
+            $alamat = $this->input->post('alamat');
 
             # Cek jika ada foto yang mau diupload
             $upload_image = $_FILES['image'];
@@ -94,6 +95,7 @@ class C_user extends CI_Controller {
             }
 
             $this->db->set('name', $name);
+            $this->db->set('alamat', $alamat);
             $this->db->where('email', $email);
             $this->db->update('user');
 
