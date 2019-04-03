@@ -94,7 +94,7 @@ class C_admin extends CI_Controller {
 
     public function edit(){
         
-        $data['title'] = 'Edit Profile';
+        $data['title'] = 'Edit Profile Admin';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
 
@@ -107,7 +107,7 @@ class C_admin extends CI_Controller {
             $this->load->view('templates/user_header',$data);
             $this->load->view('templates/user_sidebar',$data);
             $this->load->view('templates/user_topbar',$data);
-            $this->load->view('user/edit', $data);
+            $this->load->view('admin/edit', $data);
             $this->load->view('templates/user_footer');
         } else {
             # code...
@@ -154,7 +154,23 @@ class C_admin extends CI_Controller {
                 Your Profile Has been Updated !,
                 </div>');
 
-            redirect('c_user'); 
+            redirect('c_admin/profile'); 
         }
     }
+
+    public function profile(){
+
+        $data['title'] = 'Profile Admin';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+
+        //echo 'Selamat Datang ' . $data['user']['name'];
+
+        $this->load->view('templates/user_header',$data);
+        $this->load->view('templates/user_sidebar',$data);
+        $this->load->view('templates/user_topbar',$data);
+        $this->load->view('admin/profile', $data);
+        $this->load->view('templates/user_footer');
+    }
+    
 }
