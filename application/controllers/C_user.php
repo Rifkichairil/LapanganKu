@@ -7,6 +7,7 @@ class C_user extends CI_Controller {
 
         parent::__construct();
         is_logged_in() ; 
+        $this->load->model('Searching_model');
       }
       
     //memangggil method constructor s
@@ -15,14 +16,21 @@ class C_user extends CI_Controller {
         $data['title'] = 'My Home';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
+        
+        // $data['lapangan'] = $this->db->get('lapangan')->result_array();
 
         //echo 'Selamat Datang ' . $data['user']['name'];
+    
+        $data['lapangan'] = $this->Searching_model->getAllLapangan();
+        if($this->input->post('keyword')){
+            $data['lapangan'] = $this->Searching_model->cariDataLapangan();
+        }
 
         $this->load->view('templates/home_header',$data);
         $this->load->view('templates/home_navbar',$data);
         // #$this->load->view('templates/user_sidebar',$data);
         // #$this->load->view('templates/user_topbar',$data);
-        // $this->load->view('user/index', $data);
+        $this->load->view('user/index', $data);
         $this->load->view('templates/home_footer');
     }
 

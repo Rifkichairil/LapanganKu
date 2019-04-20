@@ -32,7 +32,8 @@ class C_menu extends CI_Controller {
         } else {
             # code...
             $this->db->insert('user_menu',
-            ['menu' => $this->input->post('menu')]);
+            ['menu' => $this->input->post('menu')]
+            );
             
             $this->session->set_flashdata('message',
             '<div class="alert alert-success" 
@@ -91,3 +92,4 @@ class C_menu extends CI_Controller {
         
     }
     
+ 

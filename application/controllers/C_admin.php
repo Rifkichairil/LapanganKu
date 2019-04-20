@@ -17,13 +17,36 @@ class C_admin extends CI_Controller {
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
 
-        //echo 'Selamat Datang ' . $data['user']['name'];
+        $data['lapangan'] = $this->db->get('lapangan')->result_array();
 
-        $this->load->view('templates/user_header',$data);
-        $this->load->view('templates/user_sidebar',$data);
-        $this->load->view('templates/user_topbar',$data);
-        $this->load->view('admin/index', $data);
-        $this->load->view('templates/user_footer');
+        $this->form_validation->set_rules('lp_kode', 'Lp_Kode', 'required');
+        $this->form_validation->set_rules('lp_nama', 'Lp_Nama', 'required');
+   
+
+        if ($this->form_validation->run() == false) {
+            //echo 'Selamat Datang ' . $data['user']['name'];
+
+            $this->load->view('templates/user_header',$data);
+            $this->load->view('templates/user_sidebar',$data);
+            $this->load->view('templates/user_topbar',$data);
+            $this->load->view('admin/index', $data);
+            $this->load->view('templates/user_footer');
+        } else {
+            # code...
+            $data=[
+                'lp_kode' => $this->input->post('lp_kode'),
+                'lp_nama' => $this->input->post('lp_nama')
+            ];
+
+            $this->db->insert('lapangan', $data);
+            $this->session->set_flashdata('message',
+            '<div class="alert alert-success" 
+            role="alert">
+            New Lapangan Added !
+            </div>');
+            
+            redirect('c_admin');
+         }
     }
     
     public function role(){
@@ -236,4 +259,5 @@ class C_admin extends CI_Controller {
             }
         }
     }
+
 }
