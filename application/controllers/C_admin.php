@@ -6,6 +6,7 @@ class C_admin extends CI_Controller {
     public function __construct(){
 
         parent::__construct();
+        $this->load->model('Searching_model');
 
         is_logged_in();
     }
@@ -15,12 +16,22 @@ class C_admin extends CI_Controller {
 
         $data['title'] = 'Dashboard Admin';
         $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email') ])->row_array();
+        $this->session->userdata('email') ])->row_array(); 
+
+       // $data['name'] = $this->db->get('user')->result_array();
+        // $data['subAdmin'] = $this->admin->getAdmin();
+
+        $this->load->model('Menu_model','menu');
+        $data['admin'] = $this->menu->getAdmin();
 
         $data['lapangan'] = $this->db->get('lapangan')->result_array();
+        $data['name'] = $this->db->get('user')->result_array();
+
 
         $this->form_validation->set_rules('lp_kode', 'Lp_Kode', 'required');
         $this->form_validation->set_rules('lp_nama', 'Lp_Nama', 'required');
+        $this->form_validation->set_rules('admin_id', 'Admin', 'required');
+
    
 
         if ($this->form_validation->run() == false) {
@@ -35,7 +46,8 @@ class C_admin extends CI_Controller {
             # code...
             $data=[
                 'lp_kode' => $this->input->post('lp_kode'),
-                'lp_nama' => $this->input->post('lp_nama')
+                'lp_nama' => $this->input->post('lp_nama'),
+                'admin_id' => $this->input->post('admin_id')
             ];
 
             $this->db->insert('lapangan', $data);
@@ -55,7 +67,7 @@ class C_admin extends CI_Controller {
         $this->session->userdata('email') ])->row_array();
 
         $data['role'] = $this->db->get('user_role')->result_array();
-    
+     
         //echo 'Selamat Datang ' . $data['user']['name'];
     
         $this->load->view('templates/user_header',$data);

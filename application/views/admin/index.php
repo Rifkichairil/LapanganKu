@@ -5,22 +5,25 @@
           <!-- Page Heading -->
             <h1 class="h3 mb-4 text-grey-800"><?= $title; ?> </h1>
 
-          
+
 
 
             <!-- Kelola Menu -->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg">
                 
-                <?= form_error('menu', 
-                                '<div class="alert alert-danger" 
-                                role="alert">', ' 
-                                </div>'); ?>
+                <?php if (validation_errors()) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= validation_errors();?>
+                    </div>
+                <?php endif; ?>
+
+               
                                 
                 <?= $this->session->flashdata('message');?>
 
                 <a href="" class="btn btn-primary mb-3" 
-                   data-toggle="modal" data-target="#newLapanganModal"> Add New Lapangan </a>
+                   data-toggle="modal" data-target="#newLapanganModel"> Add New Lapangan </a>
 
                 <table class="table table-hover">
                         <thead>
@@ -28,6 +31,9 @@
                             <th scope="col">#</th>
                             <th scope="col">Kode Lapangan</th>
                             <th scope="col">Nama Lapangan</th>
+                            <th scope="col">Owner</th>
+                            <!-- <th scope="col">Icon</th>
+                            <th scope="col">Active</th> -->
                             <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -35,13 +41,15 @@
                         <tbody>
 
                             <?php $i = 1; ?>                        
-                            <?php foreach ($lapangan as $lp) :?>
+                            <?php foreach ($admin as $sm) :?>
                                 <tr>
                                     <th scope="row"><?= $i; ?></th>
-                                        <td><?= $lp['lp_kode']; ?></td>
-                                        <td><?= $lp['lp_nama']; ?></td>
+                                        <td><?= $sm['lp_kode']; ?></td>
+                                        <td><?= $sm['lp_nama']; ?></td>
+                                        <td><?= $sm['name']; ?></td>
+                                    
                                         <td>
-                                            <!-- <a href="<?= base_url('c_admin/roleaccess/') . $r['id'];?>" class="badge badge-warning">access</a> -->
+                                        
                                             <a href="" class="badge badge-success">Edit</a>
                                             <a href="" class="badge badge-danger">Delete</a>
                                         </td>
@@ -54,22 +62,21 @@
                 </div>
             </div>
 
-           
+
         </div>
         <!-- /.container-fluid -->
 
       </div>
       <!-- End of Main Content -->
 
-     
-<!-- MODAL -->
+      <!-- MODAL -->
 
         <!-- Modal -->
-        <div class="modal fade" id="newLapanganModal" tabindex="-1" role="dialog" aria-labelledby="newLapanganModalLabel" aria-hidden="true">
+        <div class="modal fade" id="newLapanganModel" tabindex="-1" role="dialog" aria-labelledby="newMenuModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newLapanganModalLabel">Add New Lapangan</h5>
+                <h5 class="modal-title" id="newSubMenuMLabel">Add New Lapangan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -89,6 +96,7 @@
                             placeholder="Kode Lapangan">
                 </div>
 
+
                 <div class="form-group">
                     <input type="text" 
                             class="form-control" 
@@ -96,6 +104,17 @@
                             name="lp_nama"
                             placeholder="Nama Lapangan">
                 </div>
+                <div class="form-group">
+                    <select name="admin_id" id="admin_id" class="form-control">
+                        <option value="">Select Admin</option>
+
+                        <?php foreach ($name as $m) : ?>
+                            <option value="<?= $m['id']; ?>"><?= $m['name']; ?></option>   
+                        <?php endforeach ;?>
+
+                    </select>
+                </div>
+
 
                 </div>
 

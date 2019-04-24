@@ -53,28 +53,49 @@
                   <div class="col-md">
                   <h1> Daftar Lapangan </h1>
 
+                      <!-- Searching -->
                       <?php if(empty($lapangan)) : ?>
                           <div class="alert alert-danger" role="alert">Data Tidak Ditemukan!! </div>          
                       <?php endif ;?>
 
-                      <ul class="list-group">
-                          <?php foreach ($lapangan as $lp) :  ?>
-                              <li class="list-group-item"> 
-                                  <?= $lp['lp_nama']?>
-                                  <a href=" <?= base_url() ; ?>mahasiswa/hapus/<?= $lp['id'] ;?>"
-                                      class="badge badge-danger float-right" 
-                                      onClick="return confirm('yakin ? ');"> Hapus </a>
+               
 
-                                  <a href=" <?= base_url() ; ?>mahasiswa/ubah/<?= $lp['id'] ;?>"
-                                      class="badge badge-success float-right" > Ubah </a>
-                                
-                                  <a href=" <?= base_url() ; ?>mahasiswa/detail/<?= $lp['id'] ;?>"
-                                      class="badge badge-primary float-right" > Detail </a>
-                        
-                              </li>
-                          <?php endforeach; ?>
-                          
-                      </ul>
+                      <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Kode Lapangan</th>
+                            <th scope="col">Nama Lapangan</th>
+                            <th scope="col">Lokasi</th>
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <?php $i = 1; ?>                        
+                            <?php foreach ($lapangan as $lp) :?>
+                                <tr>
+                                    <th scope="row"><?= $i; ?></th>
+                                        <td><?= $lp['lp_kode']; ?></td>
+                                        <td><?= $lp['lp_nama']; ?></td>
+                                        <td><?= $lp['lokasi']; ?></td>
+                                        <td>
+
+
+                                            <!-- <a href="<?= base_url('c_admin/roleaccess/') . $r['id'];?>" class="badge badge-warning">access</a> -->
+                                            <a href="" class="badge badge-success">Edit</a>
+                                            <a href="" class="badge badge-danger">Delete</a>
+                                        </td>
+                                </tr>   
+                            <?php $i++; ?>
+                            <?php endforeach; ?>
+                        </tbody>
+
+                    </table>
+                  
                   </div>
               </div>
               </div>
+
+              
