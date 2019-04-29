@@ -1,11 +1,13 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">LapanganKu Reborn</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
+
+<a href="<?= base_url('c_user'); ?>" class="my-0 mr-md font-weight-normal">LapanganKu Reborn</a>
+    
+    <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
+
+    <nav class="my-2 my-md-0 mr-md">
         <a class="p-2 text-dark" href="#">Tourney</a>
         <a class="p-2 text-dark" href="#">Booking</a>
-        <!-- <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a> -->
-
+        
     </nav>
         <!-- <a class="btn btn-outline-primary" href="#">Sign up</a> -->
 
@@ -35,7 +37,7 @@
             </a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="<?= base_url('c_user/histori');?>">
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               History
             </a>

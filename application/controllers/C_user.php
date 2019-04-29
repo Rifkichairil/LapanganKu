@@ -13,15 +13,20 @@ class C_user extends CI_Controller {
     //memangggil method constructor s
     public function index(){
 
-        $data['title'] = 'My Home';
+        $data['title'] = 'LapanganKu';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
     
+         # Load Model 
         $this->load->model('Menu_model','menu');
-
+         
+         # Buat Load Data Lapangan Dari Database.
         $data['lapangan'] = $this->db->get('lapangan')->result_array();
+        
+         # Menampilkan Nama Owner
+        // $data['name'] = $this->db->get('user')->result_array();
 
-         #Ini Buat Searching
+         # Ini Buat Searching
         if($this->input->post('keyword')){
             $data['lapangan'] = $this->Searching_model->cariDataLapangan();
         }
@@ -177,5 +182,19 @@ class C_user extends CI_Controller {
                 }
             }
         }
+    }
+
+    public function histori(){
+        $data['title'] = 'History';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+
+            // untuk memunculkan datanya 
+        $data['booking'] = $this->db->get('booking')->result_array();
+
+        $this->load->view('templates/home_header',$data);
+        $this->load->view('templates/home_navbar',$data);
+        $this->load->view('user/histori', $data);
+        $this->load->view('templates/home_footer');
     }
 }

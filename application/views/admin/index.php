@@ -31,6 +31,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Kode Lapangan</th>
                             <th scope="col">Nama Lapangan</th>
+                            <th scope="col">Lokasi</th>
                             <th scope="col">Owner</th>
                             <!-- <th scope="col">Icon</th>
                             <th scope="col">Active</th> -->
@@ -46,6 +47,7 @@
                                     <th scope="row"><?= $i; ?></th>
                                         <td><?= $sm['lp_kode']; ?></td>
                                         <td><?= $sm['lp_nama']; ?></td>
+                                        <td><?= $sm['lokasi']; ?></td>
                                         <td><?= $sm['name']; ?></td>
                                     
                                         <td>
@@ -72,11 +74,11 @@
       <!-- MODAL -->
 
         <!-- Modal -->
-        <div class="modal fade" id="newLapanganModel" tabindex="-1" role="dialog" aria-labelledby="newMenuModalLabel" aria-hidden="true">
+        <div class="modal fade" id="newLapanganModel" tabindex="-1" role="dialog" aria-labelledby="newLapanganModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newSubMenuMLabel">Add New Lapangan</h5>
+                <h5 class="modal-title" id="newLapanganModel">Add New Lapangan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -104,9 +106,18 @@
                             name="lp_nama"
                             placeholder="Nama Lapangan">
                 </div>
+
+                <div class="form-group">
+                    <input type="text" 
+                            class="form-control" 
+                            id="lokasi" 
+                            name="lokasi"
+                            placeholder="Lokasi">
+                </div>
+
                 <div class="form-group">
                     <select name="admin_id" id="admin_id" class="form-control">
-                        <option value="">Select Admin</option>
+                        <option value="">Select Menu</option>
 
                         <?php foreach ($name as $m) : ?>
                             <option value="<?= $m['id']; ?>"><?= $m['name']; ?></option>   
@@ -127,3 +138,6 @@
         </div>
         </div>
      
+
+
+      

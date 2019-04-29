@@ -94,11 +94,7 @@
                                         </div>
 
                                     </div>
-                                <!-- CLOSE FORM IMAGE -->
-
-                                
-
-                                
+                                <!-- CLOSE FORM IMAGE -->                       
                             </div>
                         </div>
                     </div>
@@ -116,11 +112,6 @@
             </div>
         </div>
            
-
-
-
-
-
         </div>
         <!-- /.container-fluid -->
 
