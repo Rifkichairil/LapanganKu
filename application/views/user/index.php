@@ -102,14 +102,14 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newViewModel"><?= $lp['lp_nama'];?></h5>
+                <h5 class="modal-title" id="newViewModel"><?= $title;?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <!-- BASE URL MENU -->
-            <form action="<?= base_url('c_user/index');?>" method="post">
+            <form action="<?= base_url('c_user/index');?>" method="put">
             <!-- TUTUP BASE URL -->
 
                 <div class="modal-body">
@@ -134,20 +134,22 @@
                 </div>
 
                 <div class="form-group">
-                <label for="lp_kode">Lokasi Lapangan</label>
+                <label for="lokasi">Lokasi Lapangan</label>
                     <input type="text" 
                             class="form-control" 
                             id="lokasi" 
                             name="lokasi"
-                            value="<?= $lp['lokasi'];?>"readonly >
+                            value="<?= $lp['lokasi'];?>" readonly >
                 </div>
+
+                
 
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="" class="btn btn-primary">Add</button>
                 </div>
             </form>
             </div> 

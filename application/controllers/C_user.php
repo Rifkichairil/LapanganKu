@@ -21,10 +21,12 @@ class C_user extends CI_Controller {
         $this->load->model('Menu_model','menu');
          
          # Buat Load Data Lapangan Dari Database.
-        $data['lapangan'] = $this->db->get('lapangan')->result_array();
+        // $data['lapangan'] = $this->db->get('lapangan')->result_array();
+        $data['lapangan'] = $this->Searching_model->cariDataLapangan();
+
         
          # Menampilkan Nama Owner
-        // $data['name'] = $this->db->get('user')->result_array();
+        $data['name'] = $this->db->get('user')->result_array();
 
          # Ini Buat Searching
         if($this->input->post('keyword')){
