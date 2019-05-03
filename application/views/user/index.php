@@ -80,9 +80,8 @@
                               <td><?= $lp['lp_nama']; ?></td>
                               <td><?= $lp['lokasi']; ?></td>
                               <td>
-                                  <a href="" class="badge badge-success" 
-                                  data-toggle="modal" data-target="#newViewModel"> View </a>
-                                     
+                                 <a href="" class="badge badge-success badgeOpen" 
+                                  data-toggle="modal" onclick="view(<?= $lp['id']?>)"> View </a>    
                               </td>
                       </tr>   
                   <?php $i++; ?>
@@ -109,7 +108,7 @@
             </div>
 
             <!-- BASE URL MENU -->
-            <form action="<?= base_url('c_user/index');?>" method="put">
+            <!-- <form action="<?= base_url('c_user/index');?>" method="put"> -->
             <!-- TUTUP BASE URL -->
 
                 <div class="modal-body">
@@ -120,7 +119,7 @@
                             class="form-control" 
                             id="lp_kode" 
                             name="lp_kode"
-                            value="<?= $lp['lp_kode'];?>" readonly >
+                            value="" readonly >
                 </div>
 
 
@@ -130,7 +129,7 @@
                             class="form-control" 
                             id="lp_nama" 
                             name="lp_nama"
-                            value="<?= $lp['lp_nama'];?>" readonly >
+                            value="" readonly >
                 </div>
 
                 <div class="form-group">
@@ -139,11 +138,8 @@
                             class="form-control" 
                             id="lokasi" 
                             name="lokasi"
-                            value="<?= $lp['lokasi'];?>" readonly >
+                            value="" readonly >
                 </div>
-
-                
-
 
                 </div>
 
@@ -155,7 +151,44 @@
             </div> 
         </div>
         </div>
-     
+
+             <!-- Testing AJax -->
+            
+        <!-- jQuery JS CDN -->
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  -->
+        <!-- jQuery DataTables JS CDN -->
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <!-- Bootstrap JS CDN -->
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+        <!-- Bootstrap JS CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+   
+        <script>
+            $(function(){
+                $('#dataTable').DataTable();
+                
+            })
+
+            function view(id) {
+                $.ajax({
+                    type : "GET", // Karena cuma ambil values saja.
+                    url : "<?= base_url('c_user/getAjax')?>/" + id, // ambil function di Controller user, dengan nama getAjax beserta idnya
+                }).done(function(data){
+                    // console.log(data.lp_kode);
+                    var datas = JSON.parse(data); // Ini untuk Ubah String 
+
+                    //yg # itu adalah id dari form Modal yg diatas | dan ambil data dari database
+                    $('#lp_kode').val(datas.lp_kode); 
+                    $('#lp_nama').val(datas.lp_nama);
+                    $('#lokasi').val(datas.lokasi);
+                    
+                    // ini id dari modalnya || dan di show ke disini 
+                    $('#newViewModel').modal('show');
+                })         
+            }
+        </script>
+
+
 
 
     

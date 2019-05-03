@@ -199,4 +199,12 @@ class C_user extends CI_Controller {
         $this->load->view('user/histori', $data);
         $this->load->view('templates/home_footer');
     }
+    
+    public function getAjax($id)
+    {
+        # code...
+        $data = $this->db->get_where('lapangan', array('id'=>$id))->row();
+        echo json_encode($data);
+
+    }
 }
