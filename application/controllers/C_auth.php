@@ -117,7 +117,7 @@ class C_auth extends CI_Controller {
             # code...
             $data['title'] = 'Authen';    
 
-            $this->load->view('templates/auth_header', $data);
+            $this->load->view('templates/auth_header', $data); 
             $this->load->view('auth/registration');
             $this->load->view('templates/auth_footer');
         } else {
@@ -128,20 +128,12 @@ class C_auth extends CI_Controller {
                 'password' => password_hash($this->input->post('password1'),
                             PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 0,
-                'date_created' => time()
-            ];
-
-            // # Token
-            // $token = random_bytes(32);
-            // var_dump($token);
-            // die;
-
-            // //insert data ke database;
-            // $this->db->insert('user', $data);
-
-            # EMAIL SETTING REGISTRTATION 
-            $this->_sendEmail();
+                'is_active' => 1,
+                'date_created' => time()   
+                ];
+            
+            //insert data ke database;
+            $this->db->insert('user', $data);
 
             $this->session->set_flashdata('message',
             '<div class="alert alert-success" 
@@ -152,36 +144,6 @@ class C_auth extends CI_Controller {
             redirect('c_auth'); 
         }
     }
-
-    private function _sendEmail(){
-        $config = [
-            'protocol'  => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'rifkich.03@gmail.com',
-            'smtp_pass' => 'Kakikuduaman123',
-            'smtp_port' => 465,
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'newline'   => "\r\n"
-        ];
-        # call lib 
-
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-
-        $this->email->from('rifkich.03@gmail.com', 'Rifki Chairil');
-        $this->email->to('rfkchrl.03@gmail.com');
-        $this->email->subject('Testing');
-        $this->email->message('Hello world');
-
-        if ($this->email->send()){
-            return true;
-        }else{
-            echo $this->email->print_debugger();
-            die;
-        }
-    }
- 
 
     public function logout(){
         $this->session->unset_userdata('email');
