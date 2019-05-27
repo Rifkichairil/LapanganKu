@@ -23,6 +23,15 @@ class Menu_model extends CI_Model{
      
     public function getAllLapangan(){
         return $this->db->get('lapangan')->result_array();  
-
     }
+
+    public function addData(){
+        $data = array(
+            'lp_kode' => $this->input->post('lp_kode', true),
+            'lp_nama' => $this->input->post('lp_nama', true),
+            'lokasi' => $this->input->post('lokasi', true), 
+            );
+        $this->db->insert('booking', $data);
+    }
+
 }

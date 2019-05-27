@@ -33,5 +33,9 @@ class Searching_model extends CI_model{
         return $this->db->query($query)->result_array();
     }
 
+    public function getLapangan($id){
+        return $this->db->get_where('lapangan', ['id' => $id])->row_array();
+    }
+
                     
 }

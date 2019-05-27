@@ -19,7 +19,7 @@ class C_user extends CI_Controller {
     
          # Load Model 
         $this->load->model('Menu_model','menu');
-         
+
          # Buat Load Data Lapangan Dari Database.
         // $data['lapangan'] = $this->db->get('lapangan')->result_array();
         $data['lapangan'] = $this->Searching_model->cariDataLapangan();
@@ -32,6 +32,7 @@ class C_user extends CI_Controller {
         if($this->input->post('keyword')){
             $data['lapangan'] = $this->Searching_model->cariDataLapangan();
         }
+         # Form
 
         $this->load->view('templates/home_header',$data);
         $this->load->view('templates/home_navbar',$data);
@@ -187,17 +188,39 @@ class C_user extends CI_Controller {
     }
 
     public function histori(){
-        $data['title'] = 'History';
+        
+        $data['title'] = "History";
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
+    
+         # Load Model 
+        $this->load->model('Menu_model','menu');
 
-            // untuk memunculkan datanya 
+         # Ini booking
         $data['booking'] = $this->db->get('booking')->result_array();
+         # Menampilkan Nama Owner
+        $data['name'] = $this->db->get('user')->result_array();
 
-        $this->load->view('templates/home_header',$data);
-        $this->load->view('templates/home_navbar',$data);
-        $this->load->view('user/histori', $data);
-        $this->load->view('templates/home_footer');
+         # Ini Buat Searching
+        if($this->input->post('keyword')){
+            $data['lapangan'] = $this->Searching_model->cariDataLapangan();
+        }
+        
+        $this->form_validation->set_rules('lp_kode', 'lp_kode', 'required|trim');
+        $this->form_validation->set_rules('lp_nama', 'lp_nama', 'required|trim');
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
+
+
+        if( $this->form_validation->run() == FALSE){
+            $this->load->view('templates/home_header',$data);
+            $this->load->view('templates/home_navbar',$data);
+            $this->load->view('user/histori', $data);
+            $this->load->view('templates/home_footer');
+        }else{
+            $this->menu->addData();
+            // $this->session->set_flashdata('flash', 'Diubah');
+            redirect('c_user/histori');
+        }
     }
     
     public function getAjax($id)
@@ -205,6 +228,7 @@ class C_user extends CI_Controller {
         # code...
         $data = $this->db->get_where('lapangan', array('id'=>$id))->row();
         echo json_encode($data);
-
     }
+
+    
 }

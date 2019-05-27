@@ -132,6 +132,86 @@ class C_admin extends CI_Controller {
             </div>');
     }
 
+    public function profile(){
+
+        $data['title'] = 'Profile Admin';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+
+        //echo 'Selamat Datang ' . $data['user']['name'];
+
+        $this->load->view('templates/user_header',$data);
+        $this->load->view('templates/user_sidebar',$data);
+        $this->load->view('templates/user_topbar',$data);
+        $this->load->view('admin/profile', $data);
+        $this->load->view('templates/user_footer');
+    }
+    
+    public function changePassword(){
+
+        $data['title'] = 'Change Password Admin';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+
+        //echo 'Selamat Datang ' . $data['user']['name'];
+        
+        # SETTING CODE CHANGE PASSWORD
+
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[4]|matches[new_password2]');
+        $this->form_validation->set_rules('new_password2', 'Confirm New Password', 'required|trim|min_length[4]|matches[new_password1]');
+
+        if ($this->form_validation->run() == false ) {
+            # code...
+            $this->load->view('templates/user_header',$data);
+            $this->load->view('templates/user_sidebar',$data);
+            $this->load->view('templates/user_topbar',$data);
+            $this->load->view('admin/changepassword', $data);
+            $this->load->view('templates/user_footer');
+        }else{
+            $current_password = $this->input->post('current_password');
+            $new_password = $this->input->post('new_password1');
+
+            # AMBIL DATA, DAN JIKA PASSWORD TIDAK SSAMA MAKA TERJADI ERROR
+            if (!password_verify($current_password, $data['user']['password'])) {
+                # code...
+                $this->session->set_flashdata('message',
+                '<div class="alert alert-danger" 
+                    role="alert">
+                    Wrong Current Password
+                    </div>');
+    
+                redirect('c_admin/changepassword'); 
+            } else {
+
+                if ($current_password == $new_password) {
+                    # code...
+                    $this->session->set_flashdata('message',
+                    '<div class="alert alert-danger" 
+                        role="alert">
+                        New Password != With CUrrent Password
+                        </div>');
+        
+                    redirect('c_admin/changepassword'); 
+                }else{
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+                    $this->db->set('password', $password_hash);
+                    $this->db->where('email', $this->session->userdata('email'));
+                    $this->db->update('user');
+
+                    $this->session->set_flashdata('message',
+                    '<div class="alert alert-success" 
+                        role="alert">
+                        Password Change
+                        </div>');
+        
+                    redirect('c_admin/changepassword'); 
+                }
+            }
+        }
+    }
+
     public function edit(){
         
         $data['title'] = 'Edit Profile Admin';
@@ -198,83 +278,75 @@ class C_admin extends CI_Controller {
         }
     }
 
-    public function profile(){
-
-        $data['title'] = 'Profile Admin';
+    public function tourney(){
+        $data['title'] = 'Tourney LapanganKu';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
-
-        //echo 'Selamat Datang ' . $data['user']['name'];
-
-        $this->load->view('templates/user_header',$data);
-        $this->load->view('templates/user_sidebar',$data);
-        $this->load->view('templates/user_topbar',$data);
-        $this->load->view('admin/profile', $data);
-        $this->load->view('templates/user_footer');
-    }
-    public function changePassword(){
-
-        $data['title'] = 'Change Password Admin';
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email') ])->row_array();
-
-        //echo 'Selamat Datang ' . $data['user']['name'];
         
-        # SETTING CODE CHANGE PASSWORD
+        $data['admin'] = $this->db->get('turney')->result_array();
 
-        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
-        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[4]|matches[new_password2]');
-        $this->form_validation->set_rules('new_password2', 'Confirm New Password', 'required|trim|min_length[4]|matches[new_password1]');
+        //echo 'Selamat Datang ' . $data['user']['name'];
 
-        if ($this->form_validation->run() == false ) {
+        $this->form_validation->set_rules('tr_name', 'tr_name', 'required|trim');
+        $this->form_validation->set_rules('tanggal', 'tanggal', 'required|trim');
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
+        $this->form_validation->set_rules('waktu', 'waktu', 'required|trim');
+        
+        if ($this->form_validation->run() == false) {
             # code...
+            
+            //echo 'Selamat Datang ' . $data['user']['name']
             $this->load->view('templates/user_header',$data);
             $this->load->view('templates/user_sidebar',$data);
             $this->load->view('templates/user_topbar',$data);
-            $this->load->view('admin/changepassword', $data);
+            $this->load->view('admin/tourney', $data);
             $this->load->view('templates/user_footer');
-        }else{
-            $current_password = $this->input->post('current_password');
-            $new_password = $this->input->post('new_password1');
+        } else {
+            $data=[
+                'tr_name' => $this->input->post('tr_name'),
+                'tanggal' => $this->input->post('tanggal'),
+                'lokasi' => $this->input->post('lokasi'),
+                'waktu' => $this->input->post('waktu'),
+            ];
 
-            # AMBIL DATA, DAN JIKA PASSWORD TIDAK SSAMA MAKA TERJADI ERROR
-            if (!password_verify($current_password, $data['user']['password'])) {
-                # code...
-                $this->session->set_flashdata('message',
-                '<div class="alert alert-danger" 
-                    role="alert">
-                    Wrong Current Password
-                    </div>');
-    
-                redirect('c_admin/changepassword'); 
-            } else {
+             # Cek jika ada foto yang mau diupload
+             $upload_image = $_FILES['image'];
+            
+             if ($upload_image) {
+                 # code...
+                 $config['upload_path']      = './assets/img/lapangan/';
+                 $config['allowed_types']    = 'gif|jpg|png';
+                 $config['max_size']         = '2048';
+                //  $config['max_width']        = '1000';
+                //  $config['max_height']       = '1000';
+ 
+                 $this->load->library('upload', $config);
+ 
+                 if ($this->upload->do_upload('image')) {
+                     # code... Ambil nama gambar baru 
+                    //  $old_image = $data['user']['image'];
+                    //  if ($old_image != 'default.jpg') {
+                    //      # code...
+                    //      unlink(FCPATH . 'assets/img/profile/' . $old_image);
+                    //  }
+ 
+                     $new_image = $this->upload->data('file_name');
+                     $this->db->set('image', $new_image);
+                 } else {
+                     # code...
+                     echo $this->upload->display_errors();
+                 }
 
-                if ($current_password == $new_password) {
-                    # code...
-                    $this->session->set_flashdata('message',
-                    '<div class="alert alert-danger" 
-                        role="alert">
-                        New Password != With CUrrent Password
-                        </div>');
-        
-                    redirect('c_admin/changepassword'); 
-                }else{
-                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+            $this->db->insert('turney', $data);
+            // $this->session->set_flashdata('message',
+            // '<div class="alert alert-success" 
+            // role="alert">
+            // New Lapangan Added !
+            // </div>');
+            
+            redirect('c_admin');
 
-                    $this->db->set('password', $password_hash);
-                    $this->db->where('email', $this->session->userdata('email'));
-                    $this->db->update('user');
-
-                    $this->session->set_flashdata('message',
-                    '<div class="alert alert-success" 
-                        role="alert">
-                        Password Change
-                        </div>');
-        
-                    redirect('c_admin/changepassword'); 
-                }
-            }
         }
     }
-
+}
 }

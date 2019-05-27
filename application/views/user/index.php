@@ -1,5 +1,5 @@
- <!-- Begin Page Content -->
- <div class="container-fluid">
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
 <!-- Page Heading -->
   <!-- <h1 class="h3 mb-4 text-grey-800"><?= $title; ?> </h1> -->
@@ -62,11 +62,11 @@
             <table class="table table-hover">
               <thead>
                   <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Kode Lapangan</th>
-                  <th scope="col">Nama Lapangan</th>
-                  <th scope="col">Lokasi</th>
-                  <th scope="col">Action</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Kode Lapangan</th>
+                    <th scope="col">Nama Lapangan</th>
+                    <th scope="col">Lokasi</th>
+                    <th scope="col">Action</th>
                   </tr>
               </thead>
 
@@ -108,7 +108,7 @@
             </div>
 
             <!-- BASE URL MENU -->
-            <!-- <form action="<?= base_url('c_user/index');?>" method="put"> -->
+            <form action="<?= base_url('c_user/histori');?>" method="post">
             <!-- TUTUP BASE URL -->
 
                 <div class="modal-body">
@@ -145,7 +145,7 @@
 
                 <div class="modal-footer">
                     <button type="" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
             </div> 
@@ -162,13 +162,12 @@
         <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
         <!-- Bootstrap JS CDN -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
-   
+
         <script>
             $(function(){
                 $('#dataTable').DataTable();
                 
             })
-
             function view(id) {
                 $.ajax({
                     type : "GET", // Karena cuma ambil values saja.
@@ -176,7 +175,6 @@
                 }).done(function(data){
                     // console.log(data.lp_kode);
                     var datas = JSON.parse(data); // Ini untuk Ubah String 
-
                     //yg # itu adalah id dari form Modal yg diatas | dan ambil data dari database
                     $('#lp_kode').val(datas.lp_kode); 
                     $('#lp_nama').val(datas.lp_nama);
@@ -189,6 +187,3 @@
         </script>
 
 
-
-
-    
