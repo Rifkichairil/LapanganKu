@@ -5,7 +5,7 @@
     <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
 
     <nav class="my-2 my-md-0 mr-md">
-        <a class="p-2 text-dark" href="#">Tourney</a>
+        <a class="p-2 text-dark" href="<?= base_url('c_user/tourney');?>">Tourney</a>
         <a class="p-2 text-dark" href="#">Booking</a>
         
     </nav>

@@ -222,11 +222,33 @@ class C_user extends CI_Controller {
             redirect('c_user/histori');
         }
     }
+
+    public function tourney(){
+
+        $data['title'] = "Menantikan Juara !";
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+        $this->load->model('Menu_model','menu');
+
+    
+        $data['tourney'] = $this->db->get('turney')->result_array();
+
+        $this->load->view('templates/home_header',$data);
+        $this->load->view('templates/home_navbar',$data);
+        $this->load->view('user/tourney', $data);
+        $this->load->view('templates/home_footer');
+    }
     
     public function getAjax($id)
     {
         # code...
         $data = $this->db->get_where('lapangan', array('id'=>$id))->row();
+        echo json_encode($data);
+    }
+    public function getMore($id)
+    {
+        # code...
+        $data = $this->db->get_where('turney', array('id'=>$id))->row();
         echo json_encode($data);
     }
 

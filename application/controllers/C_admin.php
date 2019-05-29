@@ -314,7 +314,7 @@ class C_admin extends CI_Controller {
             
              if ($upload_image) {
                  # code...
-                 $config['upload_path']      = './assets/img/lapangan/';
+                 $config['upload_path']      = './assets/img/tourney/';
                  $config['allowed_types']    = 'gif|jpg|png';
                  $config['max_size']         = '2048';
                 //  $config['max_width']        = '1000';

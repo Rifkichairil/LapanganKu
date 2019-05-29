@@ -34,4 +34,8 @@ class Menu_model extends CI_Model{
         $this->db->insert('booking', $data);
     }
 
+    public function getTourney($id){
+        return $this->db->get_where('turney', ['id' => $id])->row_array();
+    }
+
 }

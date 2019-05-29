@@ -207,8 +207,8 @@
                                     <th scope="row"><?= $i; ?></th>
 
                                         <td>
-                                        <img height="150" width="200" src="<?= base_url('assets/img/lapangan/') . 
-                                                        $sm['image'];?>" 
+                                            <img height="150" width="200" src="<?= base_url('assets/img/tourney/') . 
+                                                            $sm['image'];?>">
                                         </td>
                                        
                                         <td><?= $sm['tr_name']; ?></td>
