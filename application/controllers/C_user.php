@@ -29,9 +29,7 @@ class C_user extends CI_Controller {
         $data['name'] = $this->db->get('user')->result_array();
 
          # Ini Buat Searching
-        if($this->input->post('keyword')){
-            $data['lapangan'] = $this->Searching_model->cariDataLapangan();
-        }
+      
          # Form
 
         $this->load->view('templates/home_header',$data);

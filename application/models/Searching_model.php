@@ -18,7 +18,7 @@ class Searching_model extends CI_model{
         $this->db->like('lp_kode', $keyword);
         $this->db->or_like('lp_nama', $keyword);
         $this->db->or_like('lokasi', $keyword);
-        // $this->db->or_like('email', $keyword);
+        $this->db->order_by('lp_nama', 'ASC');
         // $this->db->or_like('jurusan', $keyword);
     
         return $this->db->get('lapangan')->result_array();

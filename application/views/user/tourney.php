@@ -12,7 +12,7 @@
                 <div class="card mb-3 ">
                     <div class="row no-gutters text-center">
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" overflow="auto">
                             <img height="200" width="250" src="<?= base_url('assets/img/tourney/') . 
                                                                 $tr['image'];?>">               
                         </div>
