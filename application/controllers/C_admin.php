@@ -23,19 +23,17 @@ class C_admin extends CI_Controller {
 
         $this->load->model('Menu_model','menu');
         $data['admin'] = $this->menu->getAdmin();
+        
 
         $data['lapangan'] = $this->db->get('lapangan')->result_array();
         $data['name'] = $this->db->get('user')->result_array();
-        // $data['menu'] = $this->db->get('user_menu')->result_array();
-
-
 
         $this->form_validation->set_rules('lp_kode', 'Lp_Kode', 'required');
         $this->form_validation->set_rules('lp_nama', 'Lp_Nama', 'required');
         $this->form_validation->set_rules('admin_id', 'admin_id', 'required');
         $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
+        $this->form_validation->set_rules('harga', 'harga', 'required');
 
-   
 
         if ($this->form_validation->run() == false) {
             //echo 'Selamat Datang ' . $data['user']['name'];
@@ -51,7 +49,8 @@ class C_admin extends CI_Controller {
                 'lp_kode' => $this->input->post('lp_kode'),
                 'lp_nama' => $this->input->post('lp_nama'),
                 'admin_id' => $this->input->post('admin_id'),
-                'lokasi' => $this->input->post('lokasi')
+                'lokasi' => $this->input->post('lokasi'),
+                'harga' => $this->input->post('harga')
 
             ];
 

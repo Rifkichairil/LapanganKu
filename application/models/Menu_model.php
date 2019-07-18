@@ -12,6 +12,7 @@ class Menu_model extends CI_Model{
 
             return $this->db->query($query)->result_array();
     }
+
     public function getAdmin(){
         $query = "  SELECT  `lapangan`.*, `user`.`name`
                     FROM    `lapangan` JOIN `user`
@@ -20,7 +21,7 @@ class Menu_model extends CI_Model{
 
         return $this->db->query($query)->result_array();
     }
-     
+
     public function getAllLapangan(){
         return $this->db->get('lapangan')->result_array();  
     }

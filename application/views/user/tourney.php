@@ -119,7 +119,6 @@
                     <button type="" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="" class="btn btn-secondary" 
                     data-toggle="collapse" data-target="#navbarToggleExternalContent">More Info</button>
-                    <button type="" class="btn btn-primary">Add</button>
                 </div>
             </form>
             </div> 

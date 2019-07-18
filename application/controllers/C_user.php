@@ -187,7 +187,7 @@ class C_user extends CI_Controller {
 
     public function histori(){
         
-        $data['title'] = "History";
+        $data['title'] = "Booking";
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
     
@@ -199,6 +199,7 @@ class C_user extends CI_Controller {
          # Menampilkan Nama Owner
         $data['name'] = $this->db->get('user')->result_array();
 
+
          # Ini Buat Searching
         if($this->input->post('keyword')){
             $data['lapangan'] = $this->Searching_model->cariDataLapangan();
@@ -207,12 +208,13 @@ class C_user extends CI_Controller {
         $this->form_validation->set_rules('lp_kode', 'lp_kode', 'required|trim');
         $this->form_validation->set_rules('lp_nama', 'lp_nama', 'required|trim');
         $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
+        $this->form_validation->set_rules('user_id', 'user_id', 'required');
 
 
         if( $this->form_validation->run() == FALSE){
             $this->load->view('templates/home_header',$data);
             $this->load->view('templates/home_navbar',$data);
-            $this->load->view('user/histori', $data);
+            $this->load->view('user/booking', $data);
             $this->load->view('templates/home_footer');
         }else{
             $this->menu->addData();

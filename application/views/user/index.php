@@ -132,19 +132,85 @@
                             value="" readonly >
                 </div>
 
-                <div class="form-group">
-                <label for="lokasi">Lokasi Lapangan</label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="lokasi" 
-                            name="lokasi"
-                            value="" readonly >
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="lokasi">Lokasi Lapangan</label>
+                                <input type="text" 
+                                        class="form-control" 
+                                        id="lokasi" 
+                                        name="lokasi"
+                                        value="" readonly >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">   
+                        <label for="harga">Harga</label>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Rp.</span>
+                            </div>
+                            <input type="text" 
+                                    class="form-control" 
+                                    id="harga" 
+                                    name="harga"
+                                    value="" readonly >
+                            <div class="input-group-append">
+                                <span class="input-group-text">/ Jam</span>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lokasi">Jam Bermain</label>
+                                    <input type="text" 
+                                            class="form-control" 
+                                            id="lokasi" 
+                                            name="lokasi"
+                                            placeholder="Contoh 13.00 "
+                                            value=""  >
+                                            <span class="badge badge-danger">format 1 - 24</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                        <label for="lokasi">Mulai Bermain</label>
+
+                            <div class="input-group mb-3">
+                                <select class="custom-select" id="durasi" name="durasi">
+                                    <option selected>Pilih Durasi Bermain...</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+
+                                <div class="input-group-append">
+                                    <label class="input-group-text" for="durasi">Jam</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
+                </br>
+
+                </div>
+            
                 <div class="modal-footer">
                     <button type="" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="" class="btn btn-primary" data-dismiss="modal">Booking</button>
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
@@ -179,6 +245,8 @@
                     $('#lp_kode').val(datas.lp_kode); 
                     $('#lp_nama').val(datas.lp_nama);
                     $('#lokasi').val(datas.lokasi);
+                    $('#harga').val(datas.harga);
+                    $('#user_id').val(datas.user_id);
                     
                     // ini id dari modalnya || dan di show ke disini 
                     $('#newViewModel').modal('show');

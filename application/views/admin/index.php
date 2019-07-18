@@ -25,13 +25,14 @@
                 <a href="" class="btn btn-primary mb-3" 
                    data-toggle="modal" data-target="#newLapanganModel"> Add New Lapangan </a>
 
-                    <table class="table table-hover">
+                    <table class="table table-hover text-center">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Kode Lapangan</th>
                             <th scope="col">Nama Lapangan</th>
                             <th scope="col">Lokasi</th>
+                            <th scope="col">Harga</th>
                             <th scope="col">Owner</th>
                             <!-- <th scope="col">Icon</th>
                             <th scope="col">Active</th> -->
@@ -40,7 +41,7 @@
                         </thead>
 
                         <tbody>
-
+                            
                             <?php $i = 1; ?>                        
                             <?php foreach ($admin as $sm) :?>
                                 <tr>
@@ -48,22 +49,22 @@
                                         <td><?= $sm['lp_kode']; ?></td>
                                         <td><?= $sm['lp_nama']; ?></td>
                                         <td><?= $sm['lokasi']; ?></td>
+                                        <td><?= $sm['harga']; ?></td>
                                         <td><?= $sm['name']; ?></td>
                                     
-                                        <td>
-                                        
+                                        <td>     
                                             <a href="" class="badge badge-success">Edit</a>
                                             <a href="" class="badge badge-danger">Delete</a>
                                         </td>
                                 </tr>   
                             <?php $i++; ?>
                             <?php endforeach; ?>
+                        
                         </tbody>
 
                     </table>
                 </div>
             </div>
-
 
         </div>
         <!-- /.container-fluid -->
@@ -114,6 +115,18 @@
                             name="lokasi"
                             placeholder="Lokasi">
                 </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="harga">Rp</span>
+                    </div>
+                    <input  type="text" 
+                            class="form-control" 
+                            id="harga" 
+                            name="harga"
+                            placeholder="Harga" >
+                </div>
+
 
                 <div class="form-group">
                     <select name="admin_id" id="admin_id" class="form-control">
