@@ -175,22 +175,22 @@
 
                             <div class="input-group mb-3">
                             
-                                    <select class="custom-select" id="jam" name="jam">
+                                    <select class="custom-select" id="jam" name="jam" onChange="fan(this.value)">
                                         <option selected>Pilih Jam Bermain...</option>
-                                            <option value="1">8</option>
-                                            <option value="2">9</option>
-                                            <option value="3">10</option>
-                                            <option value="4">11</option>
-                                            <option value="5">12</option>
-                                            <option value="6">13</option>
-                                            <option value="7">14</option>
-                                            <option value="8">15</option>
-                                            <option value="9">16</option>
-                                            <option value="10">17</option>
-                                            <option value="11">18</option>
-                                            <option value="12">19</option>
-                                            <option value="13">20</option>
-                                            <option value="14">21</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
                                     </select>    
                             </div>
                             <span class="badge badge-danger">format 1 - 24</span>
@@ -227,24 +227,34 @@
                     <div class="row">
 
                         <div class="col-md-6">
+                        <label for="waktu">Waktu Selesai</label>
+
+                            <div class="input-group mb-3">
+                                  
+                                    <input type="text" 
+                                            class="form-control" 
+                                            id="waktu" 
+                                            name="waktu"
+                                            value="" readonly >
+                                
+                            </div>
                         </div>
 
                         <div class="col-md-6">   
                         <label for="total">Total Harga</label>
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Rp.</span>
-                            </div>
-                            <input type="text" 
-                                    class="form-control" 
-                                    id="total" 
-                                    name="total"
-                                    value="" readonly >
-                          
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" 
+                                            class="form-control" 
+                                            id="total" 
+                                            name="total"
+                                            value="" readonly >
+                                
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -297,10 +307,19 @@
                 
             function fun(val){
 
-                harga = $('#harga').val();
-                document.getElementById("total").value = val * harga;
+                harga = $('#harga').val(); //ambil data yang ada diatas by id.
+                document.getElementById("total").value = val * harga; // lalu dikalikan dengan val yg ada di option select dengan data harga yg sudah di ambil
+                
+            }   
+
+            function fan(val) {
+                
+                var durasi = parseInt(document.getElementById("durasi").value);
+                var jam = parseInt(document.getElementById("jam").value);
+                document.getElementById("waktu").value = durasi + jam; // lalu dikalikan dengan val yg ada di option select dengan data harga yg sudah di ambil
+
+                
             }
-    
         
         </script>
 
