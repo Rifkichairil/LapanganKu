@@ -147,7 +147,7 @@
                         </div>
 
                         <div class="col-md-6">   
-                        <label for="harga">Harga</label>
+                        <label for="harga">Harga Lapangan</label>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -171,27 +171,44 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="lokasi">Jam Bermain</label>
-                                    <input type="text" 
-                                            class="form-control" 
-                                            id="lokasi" 
-                                            name="lokasi"
-                                            placeholder="Contoh 13.00 "
-                                            value=""  >
-                                            <span class="badge badge-danger">format 1 - 24</span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                        <label for="lokasi">Mulai Bermain</label>
+                        <label for="jam">Jam Mulai</label>
 
                             <div class="input-group mb-3">
-                                <select class="custom-select" id="durasi" name="durasi">
+                            
+                                    <select class="custom-select" id="jam" name="jam">
+                                        <option selected>Pilih Jam Bermain...</option>
+                                            <option value="1">8</option>
+                                            <option value="2">9</option>
+                                            <option value="3">10</option>
+                                            <option value="4">11</option>
+                                            <option value="5">12</option>
+                                            <option value="6">13</option>
+                                            <option value="7">14</option>
+                                            <option value="8">15</option>
+                                            <option value="9">16</option>
+                                            <option value="10">17</option>
+                                            <option value="11">18</option>
+                                            <option value="12">19</option>
+                                            <option value="13">20</option>
+                                            <option value="14">21</option>
+                                    </select>    
+                            </div>
+                            <span class="badge badge-danger">format 1 - 24</span>
+
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                        <label for="lokasi">Durasi Bermain</label>
+
+                            <div class="input-group mb-3">
+                                <select class="custom-select" id="durasi" name="durasi" onChange="fun(this.value)">
                                     <option selected>Pilih Durasi Bermain...</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
+                                    <option value="4">4</option>
                                 </select>
 
                                 <div class="input-group-append">
@@ -206,12 +223,37 @@
 
                 </br>
 
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                        </div>
+
+                        <div class="col-md-6">   
+                        <label for="total">Total Harga</label>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Rp.</span>
+                            </div>
+                            <input type="text" 
+                                    class="form-control" 
+                                    id="total" 
+                                    name="total"
+                                    value="" readonly >
+                          
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 </div>
             
                 <div class="modal-footer">
                     <button type="" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="" class="btn btn-primary" data-dismiss="modal">Booking</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <!-- <button type="submit" class="btn btn-primary">Add</button> -->
                 </div>
             </form>
             </div> 
@@ -250,8 +292,16 @@
                     
                     // ini id dari modalnya || dan di show ke disini 
                     $('#newViewModel').modal('show');
-                })         
+                }) 
             }
+                
+            function fun(val){
+
+                harga = $('#harga').val();
+                document.getElementById("total").value = val * harga;
+            }
+    
+        
         </script>
 
 
