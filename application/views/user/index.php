@@ -12,13 +12,13 @@
 
   <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
+  <section class="jumbotron" style="background:url('<?= base_url('assets/img/lapangan/banner.png')?>'); height:500px;position: relative;">
+    <div class="container text-right"  style="color : white" >
       <h1 class="jumbotron-heading"><?= $title; ?></h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+      <h1 class="jumbotron-heading"><?= $title2; ?></h1>
+      <p class="lead text">Bermain futsal dan mencari teman menjadi lebih mudah !<p>
+        <a href="#" class="btn btn-primary my-2">Pesan Sekarang !</a>
+        <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
       </p>
     </div>
   </section>

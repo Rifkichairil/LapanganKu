@@ -20,4 +20,4 @@
     <link href="<?= base_url('assets/css/');?>pricing.css" rel="stylesheet">
     <link href="<?= base_url('assets/css/');?>home.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="background:url('<?= base_url('assets/img/lapangan/banner_bg.png')?>')">

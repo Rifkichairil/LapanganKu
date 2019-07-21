@@ -13,7 +13,8 @@ class C_user extends CI_Controller {
     //memangggil method constructor s
     public function index(){
 
-        $data['title'] = 'LapanganKu';
+        $data['title'] = 'PESAN';
+        $data['title2'] = 'LAPANGAN';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email') ])->row_array();
     
