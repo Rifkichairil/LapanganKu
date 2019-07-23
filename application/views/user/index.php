@@ -108,7 +108,7 @@
             </div>
 
             <!-- BASE URL MENU -->
-            <form action="<?= base_url('c_user/histori');?>" method="post">
+            <form action="<?= base_url('c_user/booking');?>" method="post">
             <!-- TUTUP BASE URL -->
 
                 <div class="modal-body">
@@ -262,7 +262,7 @@
             
                 <div class="modal-footer">
                     <button type="" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="" class="btn btn-primary" data-dismiss="modal">Booking</button>
+                    <button type="submit" id="booking" class="btn btn-primary">Booking</button>
                     <!-- <button type="submit" class="btn btn-primary">Add</button> -->
                 </div>
             </form>
@@ -298,7 +298,9 @@
                     $('#lp_nama').val(datas.lp_nama);
                     $('#lokasi').val(datas.lokasi);
                     $('#harga').val(datas.harga);
-                    $('#user_id').val(datas.user_id);
+                    $('#jam').val(datas.jam);
+                    $('#durasi').val(datas.durasi);
+                    $('#total').val(datas.total);
                     
                     // ini id dari modalnya || dan di show ke disini 
                     $('#newViewModel').modal('show');
@@ -317,9 +319,29 @@
                 var durasi = parseInt(document.getElementById("durasi").value);
                 var jam = parseInt(document.getElementById("jam").value);
                 document.getElementById("waktu").value = durasi + jam; // lalu dikalikan dengan val yg ada di option select dengan data harga yg sudah di ambil
-
-                
             }
+
+            $("#booking").click(function(e) {
+                e.preventDefault();
+                var lp_kode  = $("#lp_kode").val(); 
+                var lp_nama  = $("#lp_nama").val();
+                var harga    = $("#harga").val();
+                var jam      = $("#jam").val();
+                var durasi   = $("#durasi").val();
+                var total    = $("#total").val();
+
+
+                var dataString = 'name='+name +'&last_name='+last_name +'&harga='+harga +'&jam='+jam +'$durasi='+durasi +'$total='+total;
+
+                $.ajax({
+                    type:'POST',
+                    data:dataString,
+                    url: "<?= base_url('c_user/booking')?>" ,
+                    success:function(data) {
+                    alert(data);
+                    }
+                });
+                });
         
         </script>
 

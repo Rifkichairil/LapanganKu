@@ -66,6 +66,10 @@
                             <th scope="col">Kode Lapangan</th>
                             <th scope="col">Nama Lapangan</th>
                             <th scope="col">Lokasi</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Jam Mulai</th>
+                            <th scope="col">Durasi</th>
+                            <th scope="col">Total</th>
                             <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -79,6 +83,10 @@
                                         <td><?= $lp['lp_kode']; ?></td>
                                         <td><?= $lp['lp_nama']; ?></td>
                                         <td><?= $lp['lokasi']; ?></td>
+                                        <td><?= $lp['harga']; ?></td>
+                                        <td><?= $lp['jam']; ?></td>
+                                        <td><?= $lp['durasi']; ?></td>
+                                        <td><?= $lp['total']; ?></td>
                                         
                                         <td>
                                             <!-- <a href="<?= base_url('c_admin/roleaccess/') . $r['id'];?>" class="badge badge-warning">access</a> -->

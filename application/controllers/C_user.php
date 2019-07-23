@@ -186,7 +186,7 @@ class C_user extends CI_Controller {
         }
     }
 
-    public function histori(){
+    public function booking(){
         
         $data['title'] = "Booking";
         $data['user'] = $this->db->get_where('user', ['email' =>
@@ -209,7 +209,10 @@ class C_user extends CI_Controller {
         $this->form_validation->set_rules('lp_kode', 'lp_kode', 'required|trim');
         $this->form_validation->set_rules('lp_nama', 'lp_nama', 'required|trim');
         $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
-        $this->form_validation->set_rules('user_id', 'user_id', 'required');
+        $this->form_validation->set_rules('harga', 'harga', 'required|trim');
+        $this->form_validation->set_rules('jam', 'jam', 'required|trim');
+        $this->form_validation->set_rules('durasi', 'durasi', 'required|trim');
+        $this->form_validation->set_rules('total', 'total', 'required|trim');
 
 
         if( $this->form_validation->run() == FALSE){
@@ -220,7 +223,7 @@ class C_user extends CI_Controller {
         }else{
             $this->menu->addData();
             // $this->session->set_flashdata('flash', 'Diubah');
-            redirect('c_user/histori');
+            redirect('c_user/booking');
         }
     }
 

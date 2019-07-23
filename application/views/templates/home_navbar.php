@@ -6,7 +6,7 @@
 
     <nav class="my-2 my-md-0 mr-md">
         <a class="p-2 text-dark" href="<?= base_url('c_user/tourney');?>">Tourney</a>
-        <a class="p-2 text-dark" href="<?= base_url('c_user/histori')?>">Booking</a>
+        <a class="p-2 text-dark" href="<?= base_url('c_user/booking')?>">Booking</a>
         
     </nav>
         <!-- <a class="btn btn-outline-primary" href="#">Sign up</a> -->
@@ -37,7 +37,7 @@
             </a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="<?= base_url('c_user/histori');?>">
+            <a class="dropdown-item" href="<?= base_url('c_user/history');?>">
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               History
             </a>

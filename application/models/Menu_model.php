@@ -28,9 +28,13 @@ class Menu_model extends CI_Model{
 
     public function addData(){
         $data = array(
-            'lp_kode' => $this->input->post('lp_kode', true),
-            'lp_nama' => $this->input->post('lp_nama', true),
-            'lokasi' => $this->input->post('lokasi', true), 
+            'lp_kode'    => $this->input->post('lp_kode', true),
+            'lp_nama'    => $this->input->post('lp_nama', true),
+            'lokasi'     => $this->input->post('lokasi', true), 
+            'harga'      => $this->input->post('harga', true), 
+            'jam'        => $this->input->post('jam', true), 
+            'durasi'     => $this->input->post('durasi', true), 
+            'total'      => $this->input->post('total', true), 
             );
         $this->db->insert('booking', $data);
     }
