@@ -48,8 +48,8 @@
                 </div> -->
 
 
-      <div class="row mt-3">
-                  <div class="col-md">
+      <div class="row mt-6">
+                  <div class="col">
                   <h1>  </h1>
 
                       <!-- Searching
@@ -59,7 +59,7 @@
 
                
 
-                      <table class="table table-hover">
+                      <table class="table table-hover text-center">
                         <thead>
                             <tr>
                             <th scope="col">#</th>

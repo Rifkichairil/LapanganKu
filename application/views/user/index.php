@@ -192,6 +192,9 @@
                                             <option value="20">20</option>
                                             <option value="21">21</option>
                                     </select>    
+                                    <div class="input-group-append">
+                                        <label class="input-group-text" for="durasi">.00</label>
+                                    </div>
                             </div>
                             <span class="badge badge-danger">format 1 - 24</span>
 
@@ -237,7 +240,11 @@
                                             name="waktu"
                                             value="" readonly >
                                 
+                                    <div class="input-group-append">
+                                        <label class="input-group-text" for="durasi">.00</label>
+                                    </div>
                             </div>
+                            
                         </div>
 
                         <div class="col-md-6">   
