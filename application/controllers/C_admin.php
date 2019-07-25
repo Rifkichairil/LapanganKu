@@ -64,6 +64,26 @@ class C_admin extends CI_Controller {
             redirect('c_admin');
          }
     }
+
+    public function payment(){
+        $data['title'] = 'Payment';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array(); 
+
+        $this->load->model('Menu_model','menu');
+
+        if ($this->form_validation->run() == false) {
+            //echo 'Selamat Datang ' . $data['user']['name'];
+
+            $this->load->view('templates/user_header',$data);
+            $this->load->view('templates/user_sidebar',$data);
+            $this->load->view('templates/user_topbar',$data);
+            $this->load->view('admin/payment', $data);
+            $this->load->view('templates/user_footer');
+        } else {
+            # code...
+         }
+    }
     
     public function role(){
         $data['title'] = 'Role';

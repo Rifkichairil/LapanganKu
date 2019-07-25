@@ -33,6 +33,7 @@ class Menu_model extends CI_Model{
             'lokasi'     => $this->input->post('lokasi', true), 
             'harga'      => $this->input->post('harga', true), 
             'jam'        => $this->input->post('jam', true), 
+            'waktu'      => $this->input->post('waktu', true), 
             'durasi'     => $this->input->post('durasi', true), 
             'total'      => $this->input->post('total', true), 
             );

@@ -53,9 +53,9 @@
         <h1> Daftar Lapangan </h1>
 
             <!-- Searching -->
-            <?php if(empty($lapangan)) : ?>
+            <!-- <?php if(empty($lapangan)) : ?>
                 <div class="alert alert-danger" role="alert">Data Tidak Ditemukan!! </div>          
-            <?php endif ;?>
+            <?php endif ;?> -->
 
      
 
@@ -200,8 +200,6 @@
 
                         </div>
 
-
-
                         <div class="col-md-6">
                         <label for="lokasi">Durasi Bermain</label>
 
@@ -262,6 +260,7 @@
                                 
                             </div>
                         </div>
+                        
                     </div>
                 </div>
 

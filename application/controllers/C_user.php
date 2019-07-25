@@ -37,7 +37,7 @@ class C_user extends CI_Controller {
         $this->load->view('templates/home_navbar',$data);
         $this->load->view('user/index', $data);
         $this->load->view('templates/home_footer');
-    }
+    }   
 
     public function profile(){
 
@@ -211,6 +211,7 @@ class C_user extends CI_Controller {
         $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim');
         $this->form_validation->set_rules('harga', 'harga', 'required|trim');
         $this->form_validation->set_rules('jam', 'jam', 'required|trim');
+        $this->form_validation->set_rules('waktu', 'waktu', 'required|trim');
         $this->form_validation->set_rules('durasi', 'durasi', 'required|trim');
         $this->form_validation->set_rules('total', 'total', 'required|trim');
 
@@ -247,6 +248,13 @@ class C_user extends CI_Controller {
     {
         # code...
         $data = $this->db->get_where('lapangan', array('id'=>$id))->row();
+        echo json_encode($data);
+    }
+
+    public function getAjaxx($id)
+    {
+        # code...
+        $data = $this->db->get_where('booking', array('id'=>$id))->row();
         echo json_encode($data);
     }
     public function getMore($id)
