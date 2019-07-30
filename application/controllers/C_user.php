@@ -147,7 +147,7 @@ class C_user extends CI_Controller {
             $new_password = $this->input->post('new_password1');
 
             # AMBIL DATA, DAN JIKA PASSWORD TIDAK SSAMA MAKA TERJADI ERROR
-            if (!password_verify($current_password, $data['user']['password'])) {
+            if (!password_verify($current_password, $data['user']['password'])) { 
                 # code...
                 $this->session->set_flashdata('message',
                 '<div class="alert alert-danger" 

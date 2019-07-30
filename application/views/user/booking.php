@@ -343,13 +343,11 @@
                     
                     // ini id dari modalnya || dan di show ke disini 
                     $('#newViewModel').modal('show');
+
+                    document.getElementById("dp").value = datas.harga / 2 ; 
+
                 }) 
             }
-
-                $.get(function( data ) {
-                    harga = $('#harga').val(); 
-                    document.getElementById("bukti").value = harga / 2; 
-                    });
 
             
             </script>
