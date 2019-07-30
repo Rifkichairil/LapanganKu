@@ -186,6 +186,22 @@ class C_user extends CI_Controller {
         }
     }
 
+    public function tourney(){
+
+        $data['title'] = "Menantikan Juara !";
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+        $this->load->model('Menu_model','menu');
+
+    
+        $data['tourney'] = $this->db->get('turney')->result_array();
+
+        $this->load->view('templates/home_header',$data);
+        $this->load->view('templates/home_navbar',$data);
+        $this->load->view('user/tourney', $data);
+        $this->load->view('templates/home_footer');
+    }
+
     public function booking(){
         
         $data['title'] = "Booking";
@@ -228,21 +244,7 @@ class C_user extends CI_Controller {
         }
     }
 
-    public function tourney(){
 
-        $data['title'] = "Menantikan Juara !";
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email') ])->row_array();
-        $this->load->model('Menu_model','menu');
-
-    
-        $data['tourney'] = $this->db->get('turney')->result_array();
-
-        $this->load->view('templates/home_header',$data);
-        $this->load->view('templates/home_navbar',$data);
-        $this->load->view('user/tourney', $data);
-        $this->load->view('templates/home_footer');
-    }
     
     public function getAjax($id)
     {

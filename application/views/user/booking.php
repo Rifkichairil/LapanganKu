@@ -287,17 +287,18 @@
 
                         <div class="col-md-6">   
                             <label for="bukti">Upload Bukti Pembayaran</label>
-                                <div class="input-group mb-3">
-                                        
-                                                <input type="text" 
-                                                        class="form-control" 
-                                                        id="bukti" 
-                                                        name="bukti"
-                                                        value="" readonly >  
-                                            </div>
-                                        </div>
+                                <div class="custom-file">
+                                    <input type="file" 
+                                            class="custom-file-input" 
+                                            id="bukti"
+                                            name="bukti">
+                                            
+                                    <label class="custom-file-label" 
+                                            for="bukti">Choose file</label>
+                                </div>
                                 </div>
                         </div>
+                    </div>
                 </div>
                 
                 </div>
