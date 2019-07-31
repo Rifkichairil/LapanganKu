@@ -232,7 +232,7 @@ class C_user extends CI_Controller {
         $this->form_validation->set_rules('total', 'total', 'required|trim');
 
 
-        if( $this->form_validation->run() == FALSE){
+        if ($this->form_validation->run() == FALSE){
             $this->load->view('templates/home_header',$data);
             $this->load->view('templates/home_navbar',$data);
             $this->load->view('user/booking', $data);
@@ -244,7 +244,25 @@ class C_user extends CI_Controller {
         }
     }
 
+    function do_upload(){
+        # Load Model 
+        $this->load->model('Menu_model','menu');
 
+        $config['upload_path']      ="./assets/img/payment/";
+        $config['allowed_types']    ='gif|jpg|png|jpeg|JPG|JPEG';
+        $config['encrypt_name']     = TRUE;
+         
+        $this->load->library('upload',$config);
+        if($this->upload->do_upload("file")){
+            $data = array('upload_data' => $this->upload->data());
+ 
+            // $title= $this->input->post('title');
+            $image= $data['upload_data']['bukti']; 
+             
+            $result= $this->menu->save_upload($image);
+            echo json_decode($result);
+        }
+    }
     
     public function getAjax($id)
     {

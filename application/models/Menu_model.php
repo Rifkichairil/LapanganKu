@@ -44,4 +44,13 @@ class Menu_model extends CI_Model{
         return $this->db->get_where('turney', ['id' => $id])->row_array();
     }
 
+    function save_upload($image){
+        $data = array(
+                'bukti' => $image,
+            );  
+
+        $result= $this->db->insert('test',$data);
+        return $result;
+    }
+
 }
