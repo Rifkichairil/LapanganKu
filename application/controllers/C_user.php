@@ -37,6 +37,7 @@ class C_user extends CI_Controller {
         $this->load->view('templates/home_navbar',$data);
         $this->load->view('user/index', $data);
         $this->load->view('templates/home_footer');
+
     }   
 
     public function profile(){

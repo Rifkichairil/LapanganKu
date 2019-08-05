@@ -107,8 +107,11 @@
                 </button>
             </div>
 
+                <?= $this->session->flashdata('message'); ?>
+
             <!-- BASE URL MENU -->
             <form action="<?= base_url('c_user/booking');?>" method="post">
+            
             <!-- TUTUP BASE URL -->
 
                 <div class="modal-body">
@@ -137,11 +140,14 @@
                                     class="form-control" 
                                     placeholder="Click Button to Generate Unicode"
                                     value = "" readonly >
+
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button" onClick ="myFunction()">Button</button>
+                                    <button class="btn btn-primary" type="button" onClick ="myFunction()">Unicode</button>
                                 </div>
                             </div>
+                            <span class="badge badge-danger">Harap di Generate untuk melanjutkan pembayaran.</span>
                         </div>
+
                         
                     </div>
                 </div>
