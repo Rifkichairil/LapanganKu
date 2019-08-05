@@ -36,21 +36,13 @@ class Menu_model extends CI_Model{
             'waktu'      => $this->input->post('waktu', true), 
             'durasi'     => $this->input->post('durasi', true), 
             'total'      => $this->input->post('total', true), 
+            'unicode'    => $this->input->post('unicode', true), 
             );
         $this->db->insert('booking', $data);
     }
 
     public function getTourney($id){
         return $this->db->get_where('turney', ['id' => $id])->row_array();
-    }
-
-    function save_upload($image){
-        $data = array(
-                'bukti' => $image,
-            );  
-
-        $result= $this->db->insert('test',$data);
-        return $result;
     }
 
 }

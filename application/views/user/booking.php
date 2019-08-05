@@ -123,20 +123,39 @@
             </div>
 
             <!-- BASE URL MENU -->
-            <!-- <form action="<?= base_url('c_user/booking');?>" method="post"> -->
+
             <!-- TUTUP BASE URL -->
 
                 <div class="modal-body">
                     
-                <div class="form-group">
-                <label for="lp_kode">Kode Lapangan</label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="lp_kode" 
-                            name="lp_kode"
-                            value="" readonly >
-                </div>
+                <div class="container-fluid">
+                    <div class="row">
 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="lp_kode">Kode Lapangan</label>
+                                <input type="text" 
+                                        class="form-control" 
+                                        id="lp_kode" 
+                                        name="lp_kode"
+                                        value="" readonly >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                         <label for="unicode">Unicode</label>
+                            <div class="input-group mb-3">
+                            <input  type="text" 
+                                    id="unicode" 
+                                    name="unicode"
+                                    class="form-control" 
+                                    value = "" readonly >
+                               
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
 
                 <div class="form-group">
                 <label for="lp_kode">Nama Lapangan</label>
@@ -288,20 +307,6 @@
                             </div>             
                         </div>
 
-                        <div class="col-md-6">   
-                            <label for="bukti">Upload Bukti Pembayaran</label>
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="bukti" name="bukti">
-                                        <label class="custom-file-label" for="choose" >Choose file</label>
-                                    </div>
-
-                                    <div class="input-group-append">
-                                        <span type="submit" class="btn btn-primary" id="upload">Upload</span>
-                                    </div>
-
-                                    </div>
-                                </div>
                         </div>
                     </div>
                 </div>
@@ -326,7 +331,6 @@
         <script>
             $(function(){
                 $('#dataTable').DataTable();
-                
             })
             function view(id) {
                 $.ajax({
@@ -344,30 +348,13 @@
                     $('#waktu').val(datas.waktu);
                     $('#durasi').val(datas.durasi);
                     $('#total').val(datas.total);
+                    $('#unicode').val(datas.unicode);
                     $('#bukti').val(datas.bukti);
                     
                     // ini id dari modalnya || dan di show ke disini 
                     $('#newViewModel').modal('show');
                     document.getElementById("dp").value = datas.harga / 2 ; 
                 }) 
-            }
-            $('#submit').submit(function(e){
-                e.preventDefault(); 
-                        $.ajax({
-                                    url:'<?= base_url('c_user/do_upload');?>',
-                                    type:"post",
-                                    data:new FormData(this), //this is formData
-                                    processData:false,
-                                    contentType:false,
-                                    cache:false,
-                                    async:false,
-                                    success: function(data){
-                                        alert("Upload Image Successful.");
-                                }
-                            });
-                        });
-                 
-
-            
+            }                         
             </script>
                 

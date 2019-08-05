@@ -113,15 +113,38 @@
 
                 <div class="modal-body">
                     
-                <div class="form-group">
-                <label for="lp_kode">Kode Lapangan</label>
-                    <input type="text" 
-                            class="form-control" 
-                            id="lp_kode" 
-                            name="lp_kode"
-                            value="" readonly >
-                </div>
 
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="lp_kode">Kode Lapangan</label>
+                                <input type="text" 
+                                        class="form-control" 
+                                        id="lp_kode" 
+                                        name="lp_kode"
+                                        value="" readonly >
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                         <label for="unicode">Unicode</label>
+                            <div class="input-group mb-3">
+                            <input  type="text" 
+                                    id="unicode" 
+                                    name="unicode"
+                                    class="form-control" 
+                                    placeholder="Click Button to Generate Unicode"
+                                    value = "" readonly >
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" onClick ="myFunction()">Button</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
 
                 <div class="form-group">
                 <label for="lp_kode">Nama Lapangan</label>
@@ -318,8 +341,12 @@
                 harga = $('#harga').val(); //ambil data yang ada diatas by id.
                 document.getElementById("total").value = val * harga; // lalu dikalikan dengan val yg ada di option select dengan data harga yg sudah di ambil
                 
-            }   
-
+            }
+               
+            function myFunction() {
+                document.getElementById("unicode").value = Math.floor(Math.random() * 8999 + 10000);
+            } 
+            
             function fan(val) {
                 
                 var durasi = parseInt(document.getElementById("durasi").value);
@@ -335,9 +362,10 @@
                 var jam      = $("#jam").val();
                 var durasi   = $("#durasi").val();
                 var total    = $("#total").val();
+                var unicode  = $("#unicode").val();
 
 
-                var dataString = 'name='+name +'&last_name='+last_name +'&harga='+harga +'&jam='+jam +'$durasi='+durasi +'$total='+total;
+                var dataString = 'name='+name +'&last_name='+last_name +'&harga='+harga +'&jam='+jam +'$durasi='+durasi +'$total='+total +'$unicode='+unicode;
 
                 $.ajax({
                     type:'POST',

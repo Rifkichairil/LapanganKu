@@ -230,6 +230,7 @@ class C_user extends CI_Controller {
         $this->form_validation->set_rules('waktu', 'waktu', 'required|trim');
         $this->form_validation->set_rules('durasi', 'durasi', 'required|trim');
         $this->form_validation->set_rules('total', 'total', 'required|trim');
+        $this->form_validation->set_rules('unicode', 'unicode', 'required|trim');
 
 
         if ($this->form_validation->run() == FALSE){
@@ -240,6 +241,26 @@ class C_user extends CI_Controller {
         }else{
             $this->menu->addData();
             // $this->session->set_flashdata('flash', 'Diubah');
+
+            $upload_image = $_FILES['bukti'];
+            if ($upload_image) {
+                # code...
+                $config['upload_path']      = './assets/img/paymet/';
+                $config['allowed_types']    = 'gif|jpg|png|jpeg';
+                $config['max_size']         = '2048';
+
+                $this->load->library('upload',$config);
+
+                if ($this->upload->do_upload('bukti')) {
+                    # code...
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('bukti', $new_image);
+                } else {
+                    # code...
+                    echo $this->upload->display_errors();
+                }
+                $this->db->insert('test', $new_image);
+            }
             redirect('c_user/booking');
         }
     }
@@ -282,6 +303,48 @@ class C_user extends CI_Controller {
         # code...
         $data = $this->db->get_where('turney', array('id'=>$id))->row();
         echo json_encode($data);
+    }
+
+    public function addPayment(){
+
+        $upload_image = $_FILES['file'];
+
+        if ($upload_image) {
+            # code...
+            $config['upload_path']      = './assets/img/paymet/';
+            $config['allowed_types']    = 'gif|jpg|png|jpeg';
+            $config['max_size']         = '2048';
+            $config['filename']         =  url_title($this->input->post('file'));
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('file')) {
+                # code...
+                $this->db->insert('test', array(
+                    'file' => $this->upload->file
+                ));
+                // $this->session->set_flashdata('msg', 'ty'); 
+            }
+
+        }
+    }
+
+    public function oddPayment(){
+        $config = array(
+            'upload_path' => './assets/img/paymet/',
+            'allowed_types' => 'gif|jpg|png|jpeg',
+            'max_size' => 0,
+            'filename' => url_title($this->input->post('file'))
+        );
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file')) {
+            # code...
+            $this->db->insert('test', array(
+                'file' => $this->upload->file
+            ));
+            // $this->session->set_flashdata('msg', 'ty'); 
+        }
     }
 
     
