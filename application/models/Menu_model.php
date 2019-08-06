@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Menu_model extends CI_Model{
+    public function __construct(){
+
+        parent::__construct();
+  
+      }
     
     public function getSubMenu(){
 
@@ -45,4 +50,9 @@ class Menu_model extends CI_Model{
         return $this->db->get_where('turney', ['id' => $id])->row_array();
     }
 
+    public function save($unicode, $url){
+        $this->db->set('unicode',$unicode);
+        $this->db->set('file',$url);
+        $this->db->insert('test');
+    }
 }

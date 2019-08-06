@@ -265,26 +265,6 @@ class C_user extends CI_Controller {
             redirect('c_user/booking');
         }
     }
-
-    function do_upload(){
-        # Load Model 
-        $this->load->model('Menu_model','menu');
-
-        $config['upload_path']      ="./assets/img/payment/";
-        $config['allowed_types']    ='gif|jpg|png|jpeg|JPG|JPEG';
-        $config['encrypt_name']     = TRUE;
-         
-        $this->load->library('upload',$config);
-        if($this->upload->do_upload("file")){
-            $data = array('upload_data' => $this->upload->data());
- 
-            // $title= $this->input->post('title');
-            $image= $data['upload_data']['bukti']; 
-             
-            $result= $this->menu->save_upload($image);
-            echo json_decode($result);
-        }
-    }
     
     public function getAjax($id)
     {
@@ -307,6 +287,11 @@ class C_user extends CI_Controller {
     }
 
     public function addPayment(){
+        $this->form_validation->set_rules('unicode', 'unicode', 'required|trim');
+
+        $data=[
+            'unicode' => $this->input->post('unicode'),
+        ];
 
         $upload_image = $_FILES['file'];
 
@@ -315,38 +300,21 @@ class C_user extends CI_Controller {
             $config['upload_path']      = './assets/img/paymet/';
             $config['allowed_types']    = 'gif|jpg|png|jpeg';
             $config['max_size']         = '2048';
-            $config['filename']         =  url_title($this->input->post('file'));
 
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('file')) {
+                $new_image = $this->upload->data('file_name');
+                $this->db->set('file', $new_image);
+            } else {
                 # code...
-                $this->db->insert('test', array(
-                    'file' => $this->upload->file
-                ));
-                // $this->session->set_flashdata('msg', 'ty'); 
+                echo $this->upload->display_errors();
             }
 
-        }
+       $this->db->insert('test', $data);            
+       redirect('c_user/booking');
+    }
     }
 
-    public function oddPayment(){
-        $config = array(
-            'upload_path' => './assets/img/paymet/',
-            'allowed_types' => 'gif|jpg|png|jpeg',
-            'max_size' => 0,
-            'filename' => url_title($this->input->post('file'))
-        );
-        $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('file')) {
-            # code...
-            $this->db->insert('test', array(
-                'file' => $this->upload->file
-            ));
-            // $this->session->set_flashdata('msg', 'ty'); 
-        }
-    }
-
-    
 }

@@ -27,38 +27,89 @@
 
       </div>
       <!-- End of Main Content -->
+
     
-    <div class="container">
-       
+    <div class="container">     
 
       <div class="row mt-6">
                   <div class="col">
-                  <h1>  </h1>
+
+                <div class="pos-f-t">
+                    <div class="collapse" id="navbarToggleExternalContent">
+                        <div class="bg-blue p-4">
+
+                            <!-- <?php echo form_open_multipart('c_admin/tourney');?> -->
+                            <!-- BASE URL MENU -->
+                            <!-- <form action="<?= base_url('c_admin/tourney');?>" method="post"> -->
+                                <!-- TUTUP BASE URL -->
+                        
+                            <!-- FORM EMAIL -->
+
+                            <div class="form-group row">
+                                <label for="tr_name" 
+                                        class="col-sm-2 col-form-label">Nama Tourney</label>
+                                <div class="col-sm-10">
+
+                                <input type="text" 
+                                        class="form-control" 
+                                        id="tr_name" 
+                                        name="tr_name"
+                                        placeholder="Nama Tournament">
+                                </div>
+                            </div>
+
+                            <div class="custom-file">
+                                  <input type="file" 
+                                          class="custom-file-input" 
+                                          id="image"
+                                          name="image">
+                                          
+                                  <label class="custom-file-label" 
+                                          for="image">Choose file</label>
+                              </div>
+                              <br></br>
+
+                            <div class="form-group row justify-content-end">
+                                    <button type="submit"
+                                        class="btn btn-primary">Upload Bukti</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                  
 
                       <!-- Searching
                       <?php if(empty($booking)) : ?>
                           <div class="alert alert-danger" role="alert">Data Tidak Ditemukan!! </div>          
                       <?php endif ;?> -->
 
-                      <div class="col-md-3">   
+                      <div class="col-md-6">   
                             <span class="badge badge-danger">Harap Melakukan Pembayaran sesuai TotalDP ke rekening dibawah ini</span>
                             <span class="badge badge-danger">Harap Cek View untuk melihat Total DP</span>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Mandiri</span>
+                                                </div>
 
-                                <div class="input-group mb-3">
-                                
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Mandiri</span>
-                                            </div>
+                                                
                                                 <input type="text" 
                                                         class="form-control" 
                                                         id="rek" 
                                                         name="rek"
                                                         placeholder="85896623554"
                                                         value="" readonly >  
+                                    </br>
+
+                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+                                      Pembayaran
+                                    </button>
                                             </div>
-                                        </div>
-                                </div>
+
+                                        </div>                                       
+                                </div>                          
                         </div>
+
                
 
                       <table class="table table-hover text-center">
@@ -107,8 +158,53 @@
               </div>
               </div>
 
-                <!-- MODAL -->
+      <!-- Modal Upload -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pembayaran DP</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
+                    <?php echo form_open_multipart('c_user/addPayment');?>
+                    <!-- BASE URL MENU -->
+                    <form action="<?= base_url('c_user/addPayment');?>" method="post">
+                        <div class="modal-body">
+                            
+                            <div class="form-group">
+                            <label for="unicode">Unicode</label>
+                                <input type="text" 
+                                        class="form-control" 
+                                        id="unicode" 
+                                        name="unicode"
+                                        placeholder="Masukan Unicode"
+                                        value="">
+                            </div>
+                     
+                            <label for="file">Upload Bukti Pembayaran DP</label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="file">
+                                    <label class="custom-file-label" for="file" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="upload" class="btn btn-primary">Upload</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
+        <!-- MODAL View -->
         <!-- Modal -->
         <div class="modal fade" id="newViewModel" tabindex="-1" role="dialog" 
              aria-labelledby="newViewModalLabel" aria-hidden="true">
@@ -314,8 +410,8 @@
                 
                 </div>
                 </div>
-               
                 </div>
+
 
 
         <!-- Testing AJax -->

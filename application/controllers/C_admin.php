@@ -336,19 +336,10 @@ class C_admin extends CI_Controller {
                  $config['upload_path']      = './assets/img/tourney/';
                  $config['allowed_types']    = 'gif|jpg|png';
                  $config['max_size']         = '2048';
-                //  $config['max_width']        = '1000';
-                //  $config['max_height']       = '1000';
- 
+
                  $this->load->library('upload', $config);
  
                  if ($this->upload->do_upload('image')) {
-                     # code... Ambil nama gambar baru 
-                    //  $old_image = $data['user']['image'];
-                    //  if ($old_image != 'default.jpg') {
-                    //      # code...
-                    //      unlink(FCPATH . 'assets/img/profile/' . $old_image);
-                    //  }
- 
                      $new_image = $this->upload->data('file_name');
                      $this->db->set('image', $new_image);
                  } else {
@@ -356,13 +347,7 @@ class C_admin extends CI_Controller {
                      echo $this->upload->display_errors();
                  }
 
-            $this->db->insert('turney', $data);
-            // $this->session->set_flashdata('message',
-            // '<div class="alert alert-success" 
-            // role="alert">
-            // New Lapangan Added !
-            // </div>');
-            
+            $this->db->insert('turney', $data);            
             redirect('c_admin');
 
         }
