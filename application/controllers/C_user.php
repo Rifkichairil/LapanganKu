@@ -286,35 +286,48 @@ class C_user extends CI_Controller {
         echo json_encode($data);
     }
 
-    public function addPayment(){
+    public function payment(){
+        $data['title'] = 'Pembayaran DP';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email') ])->row_array();
+
         $this->form_validation->set_rules('unicode', 'unicode', 'required|trim');
-
-        $data=[
-            'unicode' => $this->input->post('unicode'),
-        ];
-
-        $upload_image = $_FILES['file'];
-
-        if ($upload_image) {
+        if ($this->form_validation->run() == false) {
             # code...
-            $config['upload_path']      = './assets/img/paymet/';
-            $config['allowed_types']    = 'gif|jpg|png|jpeg';
-            $config['max_size']         = '2048';
+            
+            $this->load->view('templates/home_header',$data);
+            $this->load->view('templates/home_navbar',$data);
+            $this->load->view('user/payment', $data);
+            $this->load->view('templates/home_footer',$data);
+        } else {
+            $data=[
+                'unicode' => $this->input->post('unicode'),
+                ];
 
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('file')) {
-                $new_image = $this->upload->data('file_name');
-                $this->db->set('file', $new_image);
-            } else {
-                # code...
-                echo $this->upload->display_errors();
-            }
-
-       $this->db->insert('test', $data);            
-       redirect('c_user/booking');
+                $upload_image = $_FILES['image'];
+            
+                if ($upload_image) {
+                    # code...
+                    $config['upload_path']      = './assets/img/paymet/';
+                    $config['allowed_types']    = 'gif|jpg|png';
+                    $config['max_size']         = '2048';
+   
+                    $this->load->library('upload', $config);
+    
+                    if ($this->upload->do_upload('image')) {
+                        $new_image = $this->upload->data('file_name');
+                        $this->db->set('image', $new_image);
+                    } else {
+                        # code...
+                        echo $this->upload->display_errors();
+                    }
+   
+               $this->db->insert('test', $data);            
+               redirect('c_user');
+   
+           }
+        }
     }
-    }
 
-
+    // close
 }

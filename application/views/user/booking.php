@@ -34,50 +34,6 @@
       <div class="row mt-6">
                   <div class="col">
 
-                <div class="pos-f-t">
-                    <div class="collapse" id="navbarToggleExternalContent">
-                        <div class="bg-blue p-4">
-
-                            <!-- <?php echo form_open_multipart('c_admin/tourney');?> -->
-                            <!-- BASE URL MENU -->
-                            <!-- <form action="<?= base_url('c_admin/tourney');?>" method="post"> -->
-                                <!-- TUTUP BASE URL -->
-                        
-                            <!-- FORM EMAIL -->
-
-                            <div class="form-group row">
-                                <label for="tr_name" 
-                                        class="col-sm-2 col-form-label">Nama Tourney</label>
-                                <div class="col-sm-10">
-
-                                <input type="text" 
-                                        class="form-control" 
-                                        id="tr_name" 
-                                        name="tr_name"
-                                        placeholder="Nama Tournament">
-                                </div>
-                            </div>
-
-                            <div class="custom-file">
-                                  <input type="file" 
-                                          class="custom-file-input" 
-                                          id="image"
-                                          name="image">
-                                          
-                                  <label class="custom-file-label" 
-                                          for="image">Choose file</label>
-                              </div>
-                              <br></br>
-
-                            <div class="form-group row justify-content-end">
-                                    <button type="submit"
-                                        class="btn btn-primary">Upload Bukti</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                  
 
                       <!-- Searching
                       <?php if(empty($booking)) : ?>
@@ -101,9 +57,17 @@
                                                         value="" readonly >  
                                     </br>
 
-                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+                                    <a href="<?= base_url('c_user/payment');?>" 
+                                        type="button" 
+                                        class="btn btn-primary">Pembayaran</a>
+
+                                    <!-- <button type="button" 
+                                            class="btn btn-primary" 
+                                            data-toggle="collapse" 
+                                            data-target="#navbarToggleExternalContent">
                                       Pembayaran
-                                    </button>
+                                    </button> -->
+
                                             </div>
 
                                         </div>                                       
@@ -450,7 +414,7 @@
                     
                     // ini id dari modalnya || dan di show ke disini 
                     $('#newViewModel').modal('show');
-                    document.getElementById("dp").value = datas.harga / 2 ; 
+                    document.getElementById("dp").value = datas.total / 2 ; 
                 }) 
             }                         
             </script>
